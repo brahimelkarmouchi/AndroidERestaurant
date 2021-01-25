@@ -15,28 +15,24 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
       binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.button2.setOnClickListener {
-            val starter = "Vous avez choisez l'entrée!"
-            val duration = Toast.LENGTH_SHORT
-            val toast = Toast.makeText(applicationContext, starter, duration)
-            toast.show()
 
-            //Toast.makeText(this, getString(R.string.toast))
+
+        binding.button2.setOnClickListener {
+
+            Toast.makeText(this, getString(R.string.starter),Toast.LENGTH_SHORT).show()
+
         }
-            binding.button3.setOnClickListener {
-                val main = "Vous avez choisez les plats"
-                val duration = Toast.LENGTH_SHORT
-                val toast = Toast.makeText(applicationContext, main, duration)
-                toast.show()
-               // Log.d("button","main")
+        binding.button3.setOnClickListener {
+
+            Toast.makeText(this, getString(R.string.main),Toast.LENGTH_SHORT).show()
+
         }
         binding.button4.setOnClickListener {
-            val deserts = "Vous avez choisez les déserts"
-            val duration = Toast.LENGTH_SHORT
-            val toast = Toast.makeText(applicationContext, deserts, duration)
-            toast.show()
-            // Log.d("button","main")
+
+            Toast.makeText(this, getString(R.string.deserts),Toast.LENGTH_SHORT).show()
+
         }
+          
     }
 
 }
