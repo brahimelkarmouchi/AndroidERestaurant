@@ -3,7 +3,6 @@ package fr.isen.elkarmouchi.androiderestauran
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.content.Intent
-import androidx.annotation.StringRes
 import fr.isen.elkarmouchi.androiderestauran.databinding.ActivityHomeBinding
 
 
