@@ -78,12 +78,12 @@ class CategoryActivity : AppCompatActivity() {
     }
     private fun loadList(dishes:List<Dish>?) {
         //val entries = listOf<String>("salade","boeuf","glace")
-        val entries = dishes?.map {it.name}
-        entries?.let{
-            val adapter =
-                CategoryAdapter(
-                    entries
-                )
+       // val entries = dishes?.map {it.name}
+           dishes?.let {
+               val adapter = CategoryAdapter(it){dish ->
+                   Log.d("dish","selected dish ${dish.name}")
+
+               }
             bindind.recyclerView.layoutManager = LinearLayoutManager(this)
             bindind.recyclerView.adapter = adapter
         }
