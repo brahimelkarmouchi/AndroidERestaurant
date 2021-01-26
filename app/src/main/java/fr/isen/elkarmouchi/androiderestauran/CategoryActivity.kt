@@ -3,24 +3,32 @@ package fr.isen.elkarmouchi.androiderestauran
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.LinearLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.volley.Request
-import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
-import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.google.gson.GsonBuilder
 import fr.isen.elkarmouchi.androiderestauran.Category.CategoryAdapter
 import fr.isen.elkarmouchi.androiderestauran.databinding.ActivityCategoryBinding
+import fr.isen.elkarmouchi.androiderestauran.network.Dish
 import fr.isen.elkarmouchi.androiderestauran.network.MenuResult
 import fr.isen.elkarmouchi.androiderestauran.network.NetworkConstant
-import kotlinx.android.synthetic.main.activity_category.*
 import org.json.JSONObject
 
 
 enum class ItemType {
-    STARTER, MAIN, DESSERT
+    STARTER, DESSERT, MAIN;
+
+    companion object {
+        fun  categoryTitle(item: ItemType?): String{
+            return when(item){
+                STARTER -> "Entrées"
+                MAIN -> "Plats"
+                DESSERT -> "Desserts"
+                else -> ""
+            }
+        }
+    }
 }
 class CategoryActivity : AppCompatActivity() {
     private lateinit var bindind: ActivityCategoryBinding
@@ -33,24 +41,14 @@ class CategoryActivity : AppCompatActivity() {
 
         val selectedItem = intent.getSerializableExtra(HomeActivity.CATEGORY_NAME) as? ItemType
         bindind.categoryTitle.text = getCategoryTitle(selectedItem)
-        loadList()
-        makeRequest()
+        //loadList()
+        makeRequest(selectedItem)
         Log.d("lifecycle", "onCreate")
 
 
     }
 
-    private fun loadList() {
-        var entries = listOf<String>("salade","boeuf","glace")
-        val adapter =
-            CategoryAdapter(
-                entries
-            )
-        bindind.recyclerView.layoutManager = LinearLayoutManager(this)
-        bindind.recyclerView.adapter = adapter
-    }
-
-    private fun makeRequest(){
+    private fun makeRequest(selectedItem: ItemType?){
         val queue = Volley.newRequestQueue(this)
         val jsondata= JSONObject()
         jsondata.put("id_shop", 1)
@@ -63,20 +61,33 @@ class CategoryActivity : AppCompatActivity() {
             jsondata,
             { response ->
                 //Log.d("request",response.toString(2))
+
                 val menu = GsonBuilder().create().fromJson(response.toString(), MenuResult::class.java)
-                menu.data.forEach{
-                    Log.d("Request", it.name)
-                }
+                val items = menu.data.firstOrNull {it.name == ItemType.categoryTitle(selectedItem)}
+                loadList(items?.items)
+
+
             },
             {error ->
                 Log.d("Request", error.localizedMessage)
             }
             )
 
-
-
 // Add the request to the RequestQueue.
         queue.add(stringRequest)
+    }
+    private fun loadList(dishes:List<Dish>?) {
+        //val entries = listOf<String>("salade","boeuf","glace")
+        val entries = dishes?.map {it.name}
+        entries?.let{
+            val adapter =
+                CategoryAdapter(
+                    entries
+                )
+            bindind.recyclerView.layoutManager = LinearLayoutManager(this)
+            bindind.recyclerView.adapter = adapter
+        }
+
     }
     
     private fun getCategoryTitle(item: ItemType?): String {
@@ -88,7 +99,7 @@ class CategoryActivity : AppCompatActivity() {
                 R.string.main
             )
             ItemType.DESSERT -> getString(
-                R.string.deserts
+                R.string.dessert
             )
             else -> ""
         }

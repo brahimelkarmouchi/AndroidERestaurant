@@ -76,7 +76,7 @@
         android:layout_width="212dp"
         android:layout_height="109dp"
         android:layout_marginTop="8dp"
-        android:text="@string/deserts"
+        android:text="@string/dessert"
         android:textColor="#E1AF1B"
         android:textSize="30sp"
         android:textStyle="normal"

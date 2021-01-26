@@ -2,7 +2,7 @@
     <string name="app_name">AndroidERestaurant</string>
     <string name="starter">Entrée</string>
     <string name="main">Plats</string>
-    <string name="deserts">Déserts</string>
+    <string name="dessert">Désserts</string>
     <string name="hello">Bienvenue\nchez</string>
 
 </resources>

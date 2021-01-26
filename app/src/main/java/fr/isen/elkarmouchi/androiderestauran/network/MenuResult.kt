@@ -4,9 +4,9 @@ import com.google.gson.annotations.SerializedName
 
 class MenuResult(val data: List<Category>) {}
 
-class Category (@SerializedName("name_fr")val name:String,val items:List<Item>){}
+class Category (@SerializedName("name_fr")val name:String,val items:List<Dish>){}
 
-class Item(
+class Dish(
     @SerializedName("name_fr") val name:String,
     val images:List<String>,
     val ingredients:List<Ingredient>,
