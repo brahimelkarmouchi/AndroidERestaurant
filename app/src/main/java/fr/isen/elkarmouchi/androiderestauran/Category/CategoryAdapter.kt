@@ -5,6 +5,8 @@ import android.widget.ExpandableListView
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
+import fr.isen.elkarmouchi.androiderestauran.R
 import fr.isen.elkarmouchi.androiderestauran.databinding.DishesCellBinding
 import fr.isen.elkarmouchi.androiderestauran.network.Dish
 
@@ -37,6 +39,11 @@ class CategoryAdapter(private val entries: List<Dish>,
         fun bind(dish: Dish){
             titleView.text = dish.name
             priceView.text = dish.prices.first().price + "€"
+            var url: String? = null
+            if(dish.images.isNotEmpty() && dish.images[0].isNotEmpty()){
+                url = dish.images[0]
+            }
+            Picasso.get().load(url).placeholder(R.drawable.logo).into(imageView)
         }
 
     }
