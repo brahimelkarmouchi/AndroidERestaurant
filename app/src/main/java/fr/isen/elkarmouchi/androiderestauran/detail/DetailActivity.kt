@@ -2,6 +2,10 @@ package fr.isen.elkarmouchi.androiderestauran.detail
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
+import fr.isen.elkarmouchi.androiderestauran.basket.BasketItem
 import fr.isen.elkarmouchi.androiderestauran.databinding.ActivityDetailBinding
 import fr.isen.elkarmouchi.androiderestauran.network.Dish
 import kotlin.math.max
@@ -44,6 +48,13 @@ class DetailActivity : AppCompatActivity() {
         val price = itemCount * dish.prices.first().price.toFloat()
         binding.textCountItem.text = itemCount.toString()
         binding.shopButton.text = "Total: $price €"
+        addToBasket(dish, itemCount)
+    }
+
+    private fun addToBasket(dish: Dish, count: Int) {
+        val item = BasketItem(dish, count)
+        val json = GsonBuilder().create().toJson(item)
+        Log.d("Basket", json)
     }
 }
 
