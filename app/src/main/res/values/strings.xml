@@ -4,5 +4,7 @@
     <string name="main">Plats</string>
     <string name="dessert">Désserts</string>
     <string name="hello">Bienvenue\nchez</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

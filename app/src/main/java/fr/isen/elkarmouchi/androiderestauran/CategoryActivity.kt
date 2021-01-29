@@ -1,5 +1,6 @@
 package fr.isen.elkarmouchi.androiderestauran
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -10,6 +11,7 @@ import com.android.volley.toolbox.Volley
 import com.google.gson.GsonBuilder
 import fr.isen.elkarmouchi.androiderestauran.Category.CategoryAdapter
 import fr.isen.elkarmouchi.androiderestauran.databinding.ActivityCategoryBinding
+import fr.isen.elkarmouchi.androiderestauran.detail.DetailActivity
 import fr.isen.elkarmouchi.androiderestauran.network.Dish
 import fr.isen.elkarmouchi.androiderestauran.network.MenuResult
 import fr.isen.elkarmouchi.androiderestauran.network.NetworkConstant
@@ -42,6 +44,7 @@ class CategoryActivity : AppCompatActivity() {
         val selectedItem = intent.getSerializableExtra(HomeActivity.CATEGORY_NAME) as? ItemType
         bindind.categoryTitle.text = getCategoryTitle(selectedItem)
         //loadList()
+
         makeRequest(selectedItem)
         Log.d("lifecycle", "onCreate")
 
@@ -49,11 +52,13 @@ class CategoryActivity : AppCompatActivity() {
     }
 
     private fun makeRequest(selectedItem: ItemType?){
+
         val queue = Volley.newRequestQueue(this)
+        val url = NetworkConstant.BASE_URL + NetworkConstant.PATH_MENU
+
         val jsondata= JSONObject()
-        jsondata.put("id_shop", 1)
-       // val url = "http://test.api.catering.bluecodegames.com/menu"
-        var url = NetworkConstant.BASE_URL + NetworkConstant.PATH_MENU
+        jsondata.put(NetworkConstant.ID_SHOP, 1)
+        // val url = "http://test.api.catering.bluecodegames.com/menu"
 
 // Request a string response from the provided URL.
         val stringRequest= JsonObjectRequest(Request.Method.POST,
@@ -61,26 +66,35 @@ class CategoryActivity : AppCompatActivity() {
             jsondata,
             { response ->
                 //Log.d("request",response.toString(2))
-
                 val menu = GsonBuilder().create().fromJson(response.toString(), MenuResult::class.java)
                 val items = menu.data.firstOrNull {it.name == ItemType.categoryTitle(selectedItem)}
                 loadList(items?.items)
-
 
             },
             {error ->
                 Log.d("Request", error.localizedMessage)
             }
-            )
+        )
 
 // Add the request to the RequestQueue.
         queue.add(stringRequest)
+
     }
+
+
+
+
     private fun loadList(dishes:List<Dish>?) {
         //val entries = listOf<String>("salade","boeuf","glace")
        // val entries = dishes?.map {it.name}
            dishes?.let {
                val adapter = CategoryAdapter(it){dish ->
+
+                   val intent = Intent(this,
+                       DetailActivity::class.java)
+                   intent.putExtra(DetailActivity.EXTRA_DISH, dish)
+                   startActivity(intent)
+
                    Log.d("dish","selected dish ${dish.name}")
 
                }
