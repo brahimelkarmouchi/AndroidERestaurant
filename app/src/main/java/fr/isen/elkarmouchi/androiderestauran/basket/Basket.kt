@@ -7,6 +7,10 @@ import java.io.File
 import java.io.Serializable
 
 class Basket (val items: MutableList<BasketItem>): Serializable {
+    var itemsCount: Int=0
+        get(){
+            return items.map{it.count}.reduce{acc, i -> acc +i}
+        }
 
     fun ajoutItem(item: BasketItem){
         val itemExist= items.firstOrNull(){

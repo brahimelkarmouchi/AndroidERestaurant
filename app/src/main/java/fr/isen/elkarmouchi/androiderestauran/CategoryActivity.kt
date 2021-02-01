@@ -32,7 +32,7 @@ enum class ItemType {
         }
     }
 }
-class CategoryActivity : AppCompatActivity() {
+class CategoryActivity : BaseActivity() {
     private lateinit var bindind: ActivityCategoryBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {

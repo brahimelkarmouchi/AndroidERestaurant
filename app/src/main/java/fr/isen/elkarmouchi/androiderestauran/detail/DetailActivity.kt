@@ -1,11 +1,13 @@
 package fr.isen.elkarmouchi.androiderestauran.detail
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import fr.isen.elkarmouchi.androiderestauran.BaseActivity
 import fr.isen.elkarmouchi.androiderestauran.R
 import fr.isen.elkarmouchi.androiderestauran.basket.Basket
 import fr.isen.elkarmouchi.androiderestauran.basket.BasketItem
@@ -13,10 +15,12 @@ import fr.isen.elkarmouchi.androiderestauran.databinding.ActivityDetailBinding
 import fr.isen.elkarmouchi.androiderestauran.network.Dish
 import kotlin.math.max
 
-class DetailActivity : AppCompatActivity() {
+class DetailActivity : BaseActivity() {
 
     companion object{
         const val EXTRA_DISH = "EXTRA_DISH"
+        const val NBR_ITEMS="NBR_ITEMS"
+        const val USER_PREFERENCES_NAME="USER_PREFERENCES_NAME"
     }
 
     lateinit var binding: ActivityDetailBinding
@@ -60,10 +64,21 @@ class DetailActivity : AppCompatActivity() {
         //addToBasket(dish, itemCount)
     }
 
+    private fun refreshMenu(basket: Basket){
+        val count = basket.itemsCount
+        val sharedPreferences = getSharedPreferences(USER_PREFERENCES_NAME,Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.putInt(NBR_ITEMS,count)
+        editor.apply()
+       // val itemsCount = basket.items.map{it.count}.reduce{acc, i -> acc +i}
+        invalidateOptionsMenu()
+    }
+
     private fun addToBasket(dish: Dish, count: Int) {
         val basket = Basket.getBasket(this)
         basket.ajoutItem(BasketItem(dish, count))
         basket.save(this)
+        refreshMenu(basket)
         //val item = BasketItem(dish, count)
         val json = GsonBuilder().create().toJson(basket)
        // Log.d("Basket", json)
