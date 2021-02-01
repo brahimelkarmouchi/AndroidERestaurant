@@ -3,8 +3,10 @@ package fr.isen.elkarmouchi.androiderestauran.detail
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import fr.isen.elkarmouchi.androiderestauran.basket.Basket
 import fr.isen.elkarmouchi.androiderestauran.basket.BasketItem
 import fr.isen.elkarmouchi.androiderestauran.databinding.ActivityDetailBinding
 import fr.isen.elkarmouchi.androiderestauran.network.Dish
@@ -15,8 +17,10 @@ class DetailActivity : AppCompatActivity() {
     companion object{
         const val EXTRA_DISH = "EXTRA_DISH"
     }
+
     lateinit var binding: ActivityDetailBinding
     private var itemCount = 1
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailBinding.inflate(layoutInflater)
@@ -42,19 +46,27 @@ class DetailActivity : AppCompatActivity() {
             itemCount += 1
             refreshShop(dish)
         }
+        binding.shopButton.setOnClickListener {
+            addToBasket(dish, itemCount)
+        }
+
 
     }
     private fun refreshShop(dish: Dish){
         val price = itemCount * dish.prices.first().price.toFloat()
         binding.textCountItem.text = itemCount.toString()
         binding.shopButton.text = "Total: $price €"
-        addToBasket(dish, itemCount)
+        //addToBasket(dish, itemCount)
     }
 
     private fun addToBasket(dish: Dish, count: Int) {
-        val item = BasketItem(dish, count)
-        val json = GsonBuilder().create().toJson(item)
-        Log.d("Basket", json)
+        val basket = Basket.getBasket(this)
+        basket.ajoutItem(BasketItem(dish, count))
+        basket.save(this)
+        //val item = BasketItem(dish, count)
+        val json = GsonBuilder().create().toJson(basket)
+       // Log.d("Basket", json)
+       // Snackbar.make(binding.root,"")
     }
 }
 
