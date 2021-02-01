@@ -4,7 +4,7 @@
     <string name="main">Plats</string>
     <string name="dessert">Désserts</string>
     <string name="hello">Bienvenue\nchez</string>
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="basket_validation">Votre plat a été ajouté au panie</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

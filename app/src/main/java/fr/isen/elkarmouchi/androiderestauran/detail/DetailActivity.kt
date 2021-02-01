@@ -6,6 +6,7 @@ import android.util.Log
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import fr.isen.elkarmouchi.androiderestauran.R
 import fr.isen.elkarmouchi.androiderestauran.basket.Basket
 import fr.isen.elkarmouchi.androiderestauran.basket.BasketItem
 import fr.isen.elkarmouchi.androiderestauran.databinding.ActivityDetailBinding
@@ -66,7 +67,7 @@ class DetailActivity : AppCompatActivity() {
         //val item = BasketItem(dish, count)
         val json = GsonBuilder().create().toJson(basket)
        // Log.d("Basket", json)
-       // Snackbar.make(binding.root,"")
+        Snackbar.make(binding.root,getString(R.string.basket_validation), Snackbar.LENGTH_LONG).show()
     }
 }
 
