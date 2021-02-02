@@ -12,7 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".BasketActivity"></activity>
+        <activity android:name=".register.LoginActivity"></activity>
+        <activity android:name=".register.RegisterActivity" />
+        <activity android:name=".BasketActivity" />
         <activity android:name=".detail.DetailActivity" />
         <activity android:name=".CategoryActivity" />
         <activity android:name=".HomeActivity">

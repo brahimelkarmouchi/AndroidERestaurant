@@ -20,8 +20,14 @@ open class BaseActivity: AppCompatActivity() {
 
         countText?.text = count.toString()
         menuView?.setOnClickListener{
-            val intent = Intent(this, BasketActivity::class.java)
+          /*  val intent = Intent(this, BasketActivity::class.java)
             startActivity(intent)
+           */
+            if(count > 0) {
+                val intent = Intent(this, BasketActivity::class.java)
+                startActivity(intent)
+                          }
+
           //  Log.d("basket", "start activity")
         }
         return true

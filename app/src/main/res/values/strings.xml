@@ -10,4 +10,14 @@
     <string name="quantity">Quantité :</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+
+    <string name="registrationtitle">Création de votre compte</string>
+    <string name="firstname">Prénom</string>
+    <string name="lastname">Nom</string>
+    <string name="mail">Email</string>
+    <string name="mdp">Mot de passe</string>
+    <string name="register">Créer votre compte</string>
+
+    <string name="login">Se connecter</string>
+
 </resources>

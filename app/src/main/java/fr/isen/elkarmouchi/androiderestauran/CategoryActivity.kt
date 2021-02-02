@@ -54,7 +54,7 @@ class CategoryActivity : BaseActivity() {
 
     private fun makeRequest(selectedItem: ItemType?){
         val loader= Loader()
-        loader.show(this,"menu recuperation")
+        loader.show(this,"Menu recuperation")
         val queue = Volley.newRequestQueue(this)
         val url = NetworkConstant.BASE_URL + NetworkConstant.PATH_MENU
 
