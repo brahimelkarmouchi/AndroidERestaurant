@@ -31,6 +31,9 @@ class Basket (val items: MutableList<BasketItem>): Serializable {
         }
 
     }
+    fun clear() {
+        items.clear()
+    }
     fun save(context: Context){
         val jsFile = File(context.cacheDir.absolutePath + BASKET_FILE)
         jsFile.writeText(GsonBuilder().create().toJson(this))

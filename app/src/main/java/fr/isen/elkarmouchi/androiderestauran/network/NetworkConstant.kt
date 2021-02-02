@@ -11,5 +11,8 @@ class NetworkConstant {
         const val PASSWORD = "password"
         const val FIRSTNAME = "firstname"
         const val LASTNAME = "lastname"
+        const val PATH_ORDER = "user/order"
+        const val ID_USER = "id_user"
+        const val MSG = "msg"
     }
 }

@@ -47,7 +47,12 @@ class LoginActivity : AppCompatActivity() {
             jsonData,
             { response ->
                 val userResult = GsonBuilder().create().fromJson(response.toString(), RegisterResult::class.java)
-                saveUser(userResult.data)
+               // saveUser(userResult.data)
+                if(userResult.data != null) {
+                    saveUser(userResult.data)
+                } else {
+                    Toast.makeText(this, "Email ou mot de passe incorrect", Toast.LENGTH_LONG).show()
+                }
             },
             { error ->
                 error.message?.let {
