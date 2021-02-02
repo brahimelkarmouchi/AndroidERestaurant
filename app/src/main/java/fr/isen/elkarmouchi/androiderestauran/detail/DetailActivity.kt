@@ -19,8 +19,7 @@ class DetailActivity : BaseActivity() {
 
     companion object{
         const val EXTRA_DISH = "EXTRA_DISH"
-        const val NBR_ITEMS="NBR_ITEMS"
-        const val USER_PREFERENCES_NAME="USER_PREFERENCES_NAME"
+
     }
 
     lateinit var binding: ActivityDetailBinding
@@ -35,13 +34,13 @@ class DetailActivity : BaseActivity() {
         dish?.let {
             setupView(it)
         }
+        val fragment = DetailViewFragment(dish)
+        supportFragmentManager.beginTransaction().add(R.id.fragmentContainer, fragment).commit()
 
 
     }
     private fun setupView(dish: Dish){
-        binding.titleTextView.text = dish.name
-        binding.detailIngridient.text = dish.ingredients.map {it.name}?.joinToString(",")
-        binding.viewPager.adapter = PhotoAdapter(this,dish.images)
+
         refreshShop(dish)
         binding.moin.setOnClickListener {
             itemCount = max(1, itemCount - 1)
@@ -65,11 +64,7 @@ class DetailActivity : BaseActivity() {
     }
 
     private fun refreshMenu(basket: Basket){
-        val count = basket.itemsCount
-        val sharedPreferences = getSharedPreferences(USER_PREFERENCES_NAME,Context.MODE_PRIVATE)
-        val editor = sharedPreferences.edit()
-        editor.putInt(NBR_ITEMS,count)
-        editor.apply()
+
        // val itemsCount = basket.items.map{it.count}.reduce{acc, i -> acc +i}
         invalidateOptionsMenu()
     }
@@ -80,7 +75,7 @@ class DetailActivity : BaseActivity() {
         basket.save(this)
         refreshMenu(basket)
         //val item = BasketItem(dish, count)
-        val json = GsonBuilder().create().toJson(basket)
+        //val json = GsonBuilder().create().toJson(basket)
        // Log.d("Basket", json)
         Snackbar.make(binding.root,getString(R.string.basket_validation), Snackbar.LENGTH_LONG).show()
     }

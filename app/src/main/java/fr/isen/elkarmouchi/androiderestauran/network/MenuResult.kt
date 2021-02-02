@@ -11,7 +11,16 @@ class Dish(
     @SerializedName("name_fr") val name:String,
     val images:List<String>,
     val ingredients:List<Ingredient>,
-    val prices:List<Price>):Serializable{}
+    val prices:List<Price>):Serializable
+{
+    fun getThumbnailUrl(): String? {
+        return if(images.isNotEmpty() && images[0].isNotEmpty()) {
+            images[0]
+        } else {
+            null
+        }
+    }
+}
 
 class Ingredient(@SerializedName("name_fr")val name:String):Serializable{}
 class Price(val price:String):Serializable

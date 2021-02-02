@@ -12,6 +12,7 @@ import com.google.gson.GsonBuilder
 import fr.isen.elkarmouchi.androiderestauran.Category.CategoryAdapter
 import fr.isen.elkarmouchi.androiderestauran.databinding.ActivityCategoryBinding
 import fr.isen.elkarmouchi.androiderestauran.detail.DetailActivity
+import fr.isen.elkarmouchi.androiderestauran.loader.Loader
 import fr.isen.elkarmouchi.androiderestauran.network.Dish
 import fr.isen.elkarmouchi.androiderestauran.network.MenuResult
 import fr.isen.elkarmouchi.androiderestauran.network.NetworkConstant
@@ -52,7 +53,8 @@ class CategoryActivity : BaseActivity() {
     }
 
     private fun makeRequest(selectedItem: ItemType?){
-
+        val loader= Loader()
+        loader.show(this,"menu recuperation")
         val queue = Volley.newRequestQueue(this)
         val url = NetworkConstant.BASE_URL + NetworkConstant.PATH_MENU
 
@@ -65,6 +67,7 @@ class CategoryActivity : BaseActivity() {
             url,
             jsondata,
             { response ->
+               loader.hide(this)
                 //Log.d("request",response.toString(2))
                 val menu = GsonBuilder().create().fromJson(response.toString(), MenuResult::class.java)
                 val items = menu.data.firstOrNull {it.name == ItemType.categoryTitle(selectedItem)}
@@ -72,6 +75,7 @@ class CategoryActivity : BaseActivity() {
 
             },
             {error ->
+                loader.hide(this)
                 Log.d("Request", error.localizedMessage)
             }
         )
@@ -86,24 +90,24 @@ class CategoryActivity : BaseActivity() {
 
     private fun loadList(dishes:List<Dish>?) {
         //val entries = listOf<String>("salade","boeuf","glace")
-       // val entries = dishes?.map {it.name}
-           dishes?.let {
-               val adapter = CategoryAdapter(it){dish ->
+        // val entries = dishes?.map {it.name}
+        dishes?.let {
+            val adapter = CategoryAdapter(it){dish ->
 
-                   val intent = Intent(this,
-                       DetailActivity::class.java)
-                   intent.putExtra(DetailActivity.EXTRA_DISH, dish)
-                   startActivity(intent)
+                val intent = Intent(this,
+                    DetailActivity::class.java)
+                intent.putExtra(DetailActivity.EXTRA_DISH, dish)
+                startActivity(intent)
 
-                   Log.d("dish","selected dish ${dish.name}")
+                Log.d("dish","selected dish ${dish.name}")
 
-               }
+            }
             bindind.recyclerView.layoutManager = LinearLayoutManager(this)
             bindind.recyclerView.adapter = adapter
         }
 
     }
-    
+
     private fun getCategoryTitle(item: ItemType?): String {
         return when(item) {
             ItemType.STARTER -> getString(

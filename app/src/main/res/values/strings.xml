@@ -5,6 +5,9 @@
     <string name="dessert">Désserts</string>
     <string name="hello">Bienvenue\nchez</string>
     <string name="basket_validation">Votre plat a été ajouté au panie</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="basket">Panier</string>
+    <string name="order">Passer commande</string>
+    <string name="quantity">Quantité :</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>
