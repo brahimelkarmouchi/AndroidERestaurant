@@ -13,7 +13,7 @@
         android:layout_marginTop="24dp"
         android:text="@string/basket"
         android:textAlignment="center"
-        android:textColor="@color/title"
+        android:textColor="@color/logo"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -21,13 +21,14 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-
     <Button
         android:id="@+id/orderButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="169dp"
+        android:layout_height="54dp"
         android:layout_marginBottom="16dp"
+        android:background="@drawable/buttonrad"
         android:text="@string/order"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

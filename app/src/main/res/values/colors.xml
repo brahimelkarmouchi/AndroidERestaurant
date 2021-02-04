@@ -6,4 +6,7 @@
     <color name="loader">#ffffff</color>
     <color name="title">#FF9800</color>
     <color name="clear">#00FFFFFF</color>
+    <color name="logo">#e6065e</color>
+    <color name="restoName">#010101</color>
+
 </resources>

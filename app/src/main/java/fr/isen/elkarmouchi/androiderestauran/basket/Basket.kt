@@ -22,10 +22,10 @@ class Basket (val items: MutableList<BasketItem>): Serializable {
 
     fun ajoutItem(item: BasketItem){
         val itemExist= items.firstOrNull(){
-            it.dish.name ==  it.dish.name
+            it.dish.name ==  item.dish.name
         }
         itemExist?.let{
-            itemExist.count += item.count
+            itemExist.count = item.count
         }?: run{
             items.add(item)
         }

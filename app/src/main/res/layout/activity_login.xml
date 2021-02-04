@@ -15,7 +15,7 @@
         android:layout_marginEnd="32dp"
         android:text="@string/login"
         android:textAlignment="center"
-        android:textColor="@color/title"
+        android:textColor="@color/logo"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -62,10 +62,12 @@
 
     <Button
         android:id="@+id/logButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="146dp"
+        android:layout_height="46dp"
         android:layout_marginTop="32dp"
+        android:background="@drawable/buttonrad"
         android:text="@string/login"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout6" />

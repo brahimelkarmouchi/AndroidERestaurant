@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AndroidERestaurant</string>
+    <string name="app_name">BrahimRestaurant</string>
     <string name="starter">Entrée</string>
     <string name="main">Plats</string>
     <string name="dessert">Désserts</string>

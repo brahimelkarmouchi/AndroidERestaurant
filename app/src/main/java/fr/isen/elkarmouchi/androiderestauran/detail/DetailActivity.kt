@@ -46,7 +46,7 @@ class DetailActivity : BaseActivity() {
             itemCount = max(1, itemCount - 1)
             refreshShop(dish)
         }
-        binding.plus.setOnClickListener {
+        binding.logo.setOnClickListener {
             itemCount += 1
             refreshShop(dish)
         }

@@ -9,100 +9,129 @@
 
     <TextView
         android:id="@+id/textview1"
-        android:layout_width="370dp"
-        android:layout_height="80dp"
-        android:fontFamily="cursive"
+        android:layout_width="361dp"
+        android:layout_height="125dp"
+        android:fontFamily="serif"
         android:text="@string/app_name"
-        android:textColor="#494242"
+        android:textColor="@color/restoName"
         android:textSize="36sp"
         android:textStyle="bold|italic"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.39"
+        app:layout_constraintHorizontal_bias="0.428"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.304" />
+        app:layout_constraintVertical_bias="0.261" />
 
     <TextView
         android:id="@+id/textView6"
-        android:layout_width="256dp"
-        android:layout_height="79dp"
+        android:layout_width="241dp"
+        android:layout_height="110dp"
         android:layout_marginStart="24dp"
         android:gravity="left"
         android:text="@string/hello"
-        android:textColor="#E1AF1B"
-        android:textSize="30sp"
+        android:textColor="@color/logo"
+        android:textSize="36sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/textview1"
-        app:layout_constraintEnd_toStartOf="@+id/cardView"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.577" />
 
     <Button
         android:id="@+id/button2"
-        android:layout_width="212dp"
-        android:layout_height="109dp"
-        android:layout_marginTop="76dp"
+        android:layout_width="236dp"
+        android:layout_height="95dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="40dp"
+        android:background="@drawable/buttonrad"
         android:fontFamily="sans-serif"
         android:text="@string/starter"
-        android:textColor="#E1AF1B"
+        android:textColor="@color/restoName"
         android:textSize="30sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/button3"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.45"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textview1" />
+
+    <ImageView
+        android:id="@+id/imageView9"
+        android:layout_width="109dp"
+        android:layout_height="95dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toStartOf="@+id/button2"
         app:layout_constraintTop_toBottomOf="@+id/textview1"
-        app:layout_constraintVertical_bias="1.0" />
+        app:srcCompat="@drawable/entree" />
+
+    <ImageView
+        android:id="@+id/imageView10"
+        android:layout_width="109dp"
+        android:layout_height="95dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toStartOf="@+id/button3"
+        app:layout_constraintTop_toBottomOf="@+id/imageView9"
+        app:srcCompat="@drawable/plat" />
 
     <Button
         android:id="@+id/button3"
-        android:layout_width="212dp"
-        android:layout_height="109dp"
-        android:layout_marginTop="156dp"
+        android:layout_width="236dp"
+        android:layout_height="95dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="40dp"
+        android:background="@drawable/buttonrad"
         android:text="@string/main"
-        android:textColor="#E1AF1B"
+        android:textColor="@color/restoName"
         android:textSize="30sp"
         android:textStyle="normal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.45"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textview1" />
+        app:layout_constraintTop_toBottomOf="@+id/button2" />
+
+    <ImageView
+        android:id="@+id/imageView11"
+        android:layout_width="109dp"
+        android:layout_height="95dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toStartOf="@+id/button4"
+        app:layout_constraintTop_toBottomOf="@+id/imageView10"
+        app:srcCompat="@drawable/dessert" />
 
     <Button
         android:id="@+id/button4"
-        android:layout_width="212dp"
-        android:layout_height="109dp"
+        android:layout_width="236dp"
+        android:layout_height="95dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="40dp"
+        android:background="@drawable/buttonrad"
         android:text="@string/dessert"
-        android:textColor="#E1AF1B"
+        android:textColor="@color/restoName"
         android:textSize="30sp"
         android:textStyle="normal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.45"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button3" />
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
+        android:id="@+id/cardView3"
         android:layout_width="148dp"
         android:layout_height="137dp"
         android:layout_marginEnd="16dp"
         android:background="#FFFFFF"
-        app:cardBackgroundColor="#FFFFFF"
-        app:cardCornerRadius="20dp"
+        app:cardBackgroundColor="@color/logo"
+        app:cardCornerRadius="150dp"
         app:layout_constraintBottom_toTopOf="@+id/textview1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.487">
 
         <ImageView
-            android:id="@+id/plus"
+            android:id="@+id/logo"
             android:layout_width="match_parent"
             android:layout_height="140dp"
             android:src="@drawable/logo" />
     </androidx.cardview.widget.CardView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
